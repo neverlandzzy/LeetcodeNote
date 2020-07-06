@@ -1,4 +1,4 @@
-# Graph 模板
+# Graph
 
 ### \*\*\*\*[**LC133 Clone Graph**](https://leetcode.com/problems/clone-graph/)\*\*\*\*
 

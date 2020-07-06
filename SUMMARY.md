@@ -1,4 +1,6 @@
 # Table of contents
 
-* [Graph 模板](README.md)
+* [Graph](README.md)
+* [BFS](bfs.md)
+* [DFS](dfs.md)
 
