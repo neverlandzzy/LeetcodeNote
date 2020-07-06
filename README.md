@@ -2,6 +2,8 @@
 
 ### \*\*\*\*[**LC133 Clone Graph**](https://leetcode.com/problems/clone-graph/)\*\*\*\*
 
+**BFS**
+
 ```java
 class Solution {
     public Node cloneGraph(Node node) {
@@ -31,6 +33,43 @@ class Solution {
         }
         
         return newHead;
+    }
+}
+```
+
+**DFS**
+
+```java
+class Solution {    
+    public Node cloneGraph(Node node) {
+        HashMap<Node, Node> map = new HashMap<>();
+        return helper(node, map);
+    }
+    
+    private Node helper(Node node, HashMap<Node, Node> map) {
+        if (node == null) {
+    			return null;
+    		}
+    		
+    		if (map.containsKey(node)) {
+    			return map.get(node);
+    		}
+    
+    		Node copy = new Node(node.val);
+    		List<Node> neighbors = new ArrayList<>();
+        map.put(node, copy);
+    
+        for (Node neighbor: node.neighbors) {
+            if (neighbor == node) {
+               	// add self-cycle;
+                neighbors.add(copy);
+            } else {
+                neighbors.add(helper(neighbor, map));
+            }
+    		}
+    
+        copy.neighbors = neighbors;
+        return copy;
     }
 }
 ```
