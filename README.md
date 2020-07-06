@@ -149,3 +149,52 @@ public static boolean validTree(int n, int[][] edges) {
 }
 ```
 
+#### DFS
+
+```java
+public static boolean validTree(int n, int[][] edges) {
+
+	  List<List<Integer>> adjList = new ArrayList<>();
+	  boolean[] visited = new boolean[n];
+	
+	  for (int i = 0; i < n; i++) {
+        adjList.add(new ArrayList<Integer>());
+	  }
+	
+    for (int[] edge: edges) {
+        adjList.get(edge[0]).add(edge[1]);
+        adjList.get(edge[1]).add(edge[0]);
+    }
+    
+    // check cycle
+    if (hasCycle(adjList, 0, -1, visited)) {
+    	return false;
+    }
+    
+    // check if all vertices are visited
+    for (boolean v: visited) {
+    	if (!v) {
+    		return false;
+    	}
+    }
+    
+    return true;
+}
+
+// check if an undirected graph has cycle started from vertex u
+// v is the next vertex from u
+private static boolean hasCycle(List<List<Integer>> adjList, int u, int pre, boolean[] visited) {
+    visited[u] = true;
+	
+    for (int i = 0; i < adjList.get(u).size(); i++) {
+		    int v = adjList.get(u).get(i);
+		
+		    if ((visited[v] && pre != v) || (!visited[v] && hasCycle(adjList, v, u, visited))) {
+			      return true;
+		    }
+		}
+		
+		return false;
+}
+```
+
