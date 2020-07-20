@@ -428,7 +428,6 @@ class Digraph {
 		}
 	}
 	
-	
 	private void dfs(int v) {
 		marked[v] = true;
 		onStack[v] = true;
